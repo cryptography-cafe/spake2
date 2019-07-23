@@ -2,6 +2,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
+    jacoco
 }
 
 apply(from = "jdks.gradle.kts")
@@ -112,6 +113,16 @@ publishing {
 
 signing {
     sign(publishing.publications["mavenJava"])
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.isEnabled = true
+        html.isEnabled = false
+    }
+}
+tasks.check {
+    dependsOn(tasks.jacocoTestReport)
 }
 
 apply(from = "javadoc.gradle.kts")

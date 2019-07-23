@@ -47,3 +47,5 @@ tasks.jar {
     // Add the Java 9+ module-info.class to the Java 7+ classes
     from(sourceSets["moduleInfo"].output)
 }
+
+apply(from = "javadoc.gradle.kts")
